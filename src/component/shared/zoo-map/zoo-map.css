@@ -1,0 +1,36 @@
+.js-map-group {
+    cursor: pointer;
+    transition: all 150ms ease-in;
+}
+
+.js-map-group:hover {
+    opacity: 0.8;
+}
+
+.rivers-edge {
+    fill: #bc4927;
+}
+
+.map-icon {
+    fill: #fff;
+}
+
+.red-rocks {
+    fill: #e52954;
+}
+
+.discovery-corner {
+    fill: #57528f;
+}
+
+.the-wild {
+    fill: #548bc9;
+}
+
+.lakeside-crossing {
+    fill: #c7912c;
+}
+
+.historic-hill {
+    fill: #819b4c;
+}
