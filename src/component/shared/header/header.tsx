@@ -12,9 +12,13 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import {Link} from "@mui/material";
 
 const pages = ['Animals', 'History'];
-const settings = ['Profile', 'Logout'];
+const settings = [
+    { label: 'Profile', redirection:'/profile'},
+    {label: 'Logout', redirection:'/home'}
+];
 
 export const Header = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -148,8 +152,10 @@ export const Header = () => {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
+                                <MenuItem key={setting.label} onClick={handleCloseUserMenu}>
+                                    <Typography textAlign="center">
+                                        <Link underline="none" href={setting.redirection}>{setting.label}</Link>
+                                    </Typography>
                                 </MenuItem>
                             ))}
                         </Menu>

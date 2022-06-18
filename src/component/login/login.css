@@ -1,8 +1,0 @@
-.loginBox {
-    margin: auto;
-    margin-top: 30vh;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    max-width: 30vw;
-}

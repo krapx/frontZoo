@@ -7,7 +7,7 @@ import reportWebVitals from './config/reportWebVitals';
 import {Home} from "./component/home/home";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Animals} from "./component/animals/animals";
-import {Login} from "./component/login/login";
+import {Profile} from "./component/profile/profile";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,7 +19,7 @@ root.render(
             <Route path="/home" element={<Home />} />
             <Route path="/animals" element={<Animals />} />
             <Route path="/history" element={<Home />} />
-            <Route path="/login" element={<Login/>} />
+            <Route path="/profile" element={<Profile/>} />
         </Routes>
     </BrowserRouter>
   // <React.StrictMode>
