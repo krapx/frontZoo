@@ -1,0 +1,35 @@
+.profile {
+    background-color: rgb(241,241,241);
+    min-height: 100vh;
+    padding: 20px 10vw;
+
+}
+
+.profile__form {
+    background-color: white;
+}
+
+.profile__form>* {
+    border-bottom: 2px solid rgba(0,0,0,0.2);
+    padding: 25px;
+    font-size: 18px;
+
+}
+
+.profile__title {
+    color: #f45c20;
+    border-top: 3px solid #f45c20;
+    font-size: 2.5rem;
+    font-weight: normal;
+}
+
+.profile__subtitle {
+    font-weight: bold ;
+    margin-right: 1rem;
+}
+
+.profile__props:hover {
+    background-color: rgba(0,0,0,0.2);
+}
+
+
