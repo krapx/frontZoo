@@ -1,12 +1,15 @@
 import "./fight.css"
 import {useRef, useState} from "react";
+import {Avatar} from "@mui/material";
 
 const Fight = () => {
     const damageDealtContainer = useRef<HTMLDivElement>(null);
     const [user, setUser] = useState({
         name: "Rambo",
+        img: "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YW5pbWFsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
         ATK: 2,
-        HP: 200
+        HP: 200,
+        zoneDiscoveredCount: 1
     });
     const [animal, setAnimal] = useState({
         name: "Bouftou",
@@ -58,7 +61,12 @@ const Fight = () => {
                     aria-label={`${animal.currentHP}/${animal.maxHP}`}
                 />
             </div>
-            <div className="fight__footer">User ATK : <span className="fight__atk">{user.ATK}</span></div>
+            <div className="fight__footer">
+                <Avatar alt="my_animal"
+                        src={user.img}/>
+                ATK :
+                <span className="fight__atk">{user.ATK}</span>
+            </div>
         </div>
     )
 }

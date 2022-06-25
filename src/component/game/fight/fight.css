@@ -79,6 +79,9 @@
 
 .fight__footer {
     padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .fight__atk {
