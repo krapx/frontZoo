@@ -1,0 +1,23 @@
+.FormGenerateZoo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.FormGenerateZoo__form {
+    min-width: 60vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.FormGenerateZoo__inline {
+    display: flex;
+    gap: 5px;
+}
+
+.FormGenerateZoo__actions {
+    display: flex;
+    justify-content: space-between;
+}

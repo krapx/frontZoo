@@ -118,6 +118,7 @@ export const Header = () => {
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
+                                href={page.toLowerCase()}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
                                 {page}

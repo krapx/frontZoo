@@ -8,10 +8,10 @@ export const ZooMap = (props: IZooMapProps) => {
     return (
         <>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 362">
-                <g className="js-map-group" onClick={props.fetchAnimals}>
+                <g className="map-group" onClick={props.fetchAnimals}>
                     <title>River's Edge</title>
                     <path
-                        className="rivers-edge map-zone js-rivers-edge js-map-zone"
+                        className="rivers-edge map-zone"
                         d="M96.23,337.32a175.44,175.44,0,0,0,87.29,3.52l106-26.5c.78-12.21,1.42-29.15,2-45.53s1.25-33.24,2-45.46l-52.56-11.47L134.18,150.71,117.44,94.09,26.13,87,7.83,275.57C20.91,292.69,49.6,323.16,96.23,337.32Z"
                         transform="translate(-7.83 -6)"
                     />
@@ -22,10 +22,10 @@ export const ZooMap = (props: IZooMapProps) => {
                     />
                 </g>
 
-                <g className="js-map-group" onClick={props.fetchAnimals}>
+                <g className="map-group disabled" onClick={props.fetchAnimals}>
                     <title>Discovery Corner</title>
                     <polygon
-                        className="discovery-corner map-zone js-discovery-corner js-map-zone"
+                        className="discovery-corner map-zone"
                         points="299.49 128.75 328.51 88.76 281.62 61.73 244.63 65.66 228.11 82.18 214.81 67.22 190.4 61.88 176.13 116.61 132.29 145.83 233.93 204.01 286.27 215.44 308 171.33 299.49 128.75"
                     />
                     <path
@@ -35,10 +35,10 @@ export const ZooMap = (props: IZooMapProps) => {
                     />
                 </g>
 
-                <g className="js-map-group" onClick={props.fetchAnimals}>
+                <g className="map-group disabled" onClick={props.fetchAnimals}>
                     <title>Lakeside Crossing</title>
                     <polygon
-                        className="lakeside-crossing map-zone js-lakeside-crossing js-map-zone"
+                        className="lakeside-crossing map-zone"
                         points="431.36 198.08 411.76 139.51 360.38 130.62 329.97 90.11 301.59 129.21 310.07 171.6 287.79 216.81 283.67 308.14 331.88 308.91 325.56 280.85 325.8 280.49 357.88 233.41 401.33 243.13 431.36 198.08"
                     />
                     <path
@@ -48,10 +48,10 @@ export const ZooMap = (props: IZooMapProps) => {
                     />
                 </g>
 
-                <g className="js-map-group" onClick={props.fetchAnimals}>
+                <g className="map-group disabled" onClick={props.fetchAnimals}>
                     <title>The Wild</title>
                     <polygon
-                        className="the-wild map-zone js-the-wild js-map-zone"
+                        className="the-wild map-zone"
                         points="499.45 101.38 459.06 0 443.08 0 284.13 60.89 330.62 87.7 330.74 87.86 361.49 128.81 413.26 137.77 433 196.75 470.72 174.21 464.63 141.18 499.45 101.38"
                     />
                     <path
@@ -61,10 +61,10 @@ export const ZooMap = (props: IZooMapProps) => {
                     />
                 </g>
 
-                <g className="js-map-group" onClick={props.fetchAnimals}>
+                <g className="map-group disabled" onClick={props.fetchAnimals}>
                     <title>Historic Hill</title>
                     <polygon
-                        className="historic-hill map-zone js-historic-hill js-map-zone"
+                        className="historic-hill map-zone"
                         points="476.82 305.05 525.44 279.49 560.43 221.01 560.45 173.74 566.1 143.4 524.88 126.46 524.74 126.33 500.65 103.01 466.74 141.76 472.91 175.2 433.15 198.96 402.22 245.35 401.56 245.2 358.75 235.63 327.67 281.25 333.97 309.18 393.74 332.13 454.84 349.1 476.53 305.2 476.82 305.05"
                     />
                     <path
@@ -74,10 +74,10 @@ export const ZooMap = (props: IZooMapProps) => {
                     />
                 </g>
 
-                <g className="js-map-group" onClick={props.fetchAnimals}>
+                <g className="map-group disabled" onClick={props.fetchAnimals}>
                     <title>Red Rocks</title>
                     <path
-                        className="red-rocks map-zone js-red-rocks js-map-zone"
+                        className="red-rocks map-zone"
                         d="M570.23,227.56l-.14.23L534.68,287l-.24.13-48.59,25.54-21.25,43a299.81,299.81,0,0,0,203.17-10,29.14,29.14,0,0,1,10.47-18.59c8.84-7.08,19-6.4,22.56-5.88l27.61-108.32L575.79,150.17,570.23,180Z"
                         transform="translate(-7.83 -6)"
                     />

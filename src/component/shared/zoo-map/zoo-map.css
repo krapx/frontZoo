@@ -1,9 +1,13 @@
-.js-map-group {
+.map-group {
     cursor: pointer;
     transition: all 150ms ease-in;
 }
 
-.js-map-group:hover {
+.map-group.disabled > .map-zone {
+    fill: gray;
+}
+
+.map-group:not(.disabled):hover {
     opacity: 0.8;
 }
 

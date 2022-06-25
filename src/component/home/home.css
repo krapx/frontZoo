@@ -1,23 +1,13 @@
-.app {
+.home {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
 }
 
-.app__title {
-    text-align: center;
-    font-size: 50px;
-    padding: 5px;
-}
-
-.explanation {
-    flex: 1;
-    flex-basis: 300px;
-}
-
-.map {
-    flex: 2;
-    flex-basis: 300px;
-    padding: 10px;
-    background-color: gainsboro;
+.home__actions {
+    display: flex;
+    gap: 10px;
 }
