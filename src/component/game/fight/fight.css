@@ -91,13 +91,3 @@
     padding: 2px 10px;
     border-radius: 25px;
 }
-
-@keyframes move_eye {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(-200px) translateX(100px);
-    }
-}

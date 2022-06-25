@@ -1,6 +1,8 @@
 import "./fight.css"
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {Avatar} from "@mui/material";
+import {getRandZooAnimal} from "../../../api/zoo-animal.api";
+import {ZooAnimalModel} from "../../../model/zoo-animal.model";
 
 const Fight = () => {
     const damageDealtContainer = useRef<HTMLDivElement>(null);
@@ -13,23 +15,41 @@ const Fight = () => {
     });
     const [animal, setAnimal] = useState({
         name: "Bouftou",
+        img: "https://images.unsplash.com/photo-1519664824562-b4bc73f9795a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGFuaW1hbHN8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60",
         currentHP: 20,
         maxHP: 20
     });
 
+    useEffect(() => {
+        handleGetAnimal()
+    }, []);
+
+    const handleGetAnimal = () => {
+        getRandZooAnimal().then(res => {
+            const animal: ZooAnimalModel = res.data
+            setAnimal({
+                name: animal.name || "",
+                img: animal.image_link,
+                currentHP: Math.floor(animal.weight_max * animal.length_max),
+                maxHP: Math.floor(animal.weight_max * animal.length_max)
+            })
+        })
+    }
+
     const handleATK = () => {
+        setAnimal(prevState => ({...animal, currentHP: prevState.currentHP - user.ATK}))
+        damageDealtContainer.current!.appendChild(showDamageDealt())
         if (animal.currentHP <= 0) {
             handleDeath()
             return;
         }
-        setAnimal(prevState => ({...animal, currentHP: prevState.currentHP - user.ATK}))
-        damageDealtContainer.current!.appendChild(showDamageDealt())
     }
 
     const handleDeath = () => {
         console.log(`${animal.name} est mort !`)
         setAnimal(prevState => ({...animal, currentHP: prevState.maxHP}))
         clearDamageDealtContainer()
+        handleGetAnimal()
     }
 
     const clearDamageDealtContainer = () => {
@@ -51,7 +71,7 @@ const Fight = () => {
             <div className="fight__header">{animal.name}</div>
             <div className="fight__body" onClick={handleATK}>
                 <img className="fight__img"
-                     src="https://images.unsplash.com/photo-1519664824562-b4bc73f9795a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGFuaW1hbHN8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60"
+                     src={animal.img}
                      alt="fighter"/>
                 <div className="fight__damage-dealt-container" ref={damageDealtContainer}/>
                 <progress
