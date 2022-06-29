@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import './animation.css';
+import './common/animation.css';
 import App from './App';
-import {Sandbox} from "./component/sandbox/sandbox";
+import {Sandbox} from "./component/old/sandbox/sandbox";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {FormGenerateZoo} from "./component/form-generate-zoo/form-generate-zoo";
+import {FormGenerateZoo} from "./component/old/form-generate-zoo/form-generate-zoo";
 import Home from "./component/home/home";
 import Draft from "./component/draft/draft";
 import Game from "./component/game/game";

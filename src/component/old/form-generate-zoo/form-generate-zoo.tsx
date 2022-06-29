@@ -1,9 +1,9 @@
 import "./form-generate-zoo.css"
-import {Header} from "../shared/header/header";
+import {Header} from "../../shared/header/header";
 import {useEffect, useState} from "react";
 import {Button, FormControl, InputLabel, MenuItem, Select, TextField} from "@mui/material";
 import {Delete} from "@mui/icons-material";
-import {postGenerateZooGame} from "../../api/zoo-animal.api";
+import {postGenerateZooGame} from "../../../api/zoo-animal.api";
 
 const MAX_ANIMAL_COUNT = 10;
 const MAX_SPACE_COUNT = 9;

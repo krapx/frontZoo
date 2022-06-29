@@ -1,10 +1,10 @@
 import "./sandbox.css"
 import {useEffect, useState} from "react";
-import {getRandZooAnimals} from "../../api/zoo-animal.api";
-import {Loader} from "../shared/loader/loader";
-import {Header} from "../shared/header/header";
-import {ZooMap} from "../shared/zoo-map/zoo-map";
-import {AnimalGrid} from "../shared/animal-grid/animal-grid";
+import {getRandZooAnimals} from "../../../api/zoo-animal.api";
+import {Loader} from "../../shared/loader/loader";
+import {Header} from "../../shared/header/header";
+import {ZooMap} from "../../shared/zoo-map/zoo-map";
+import {AnimalGrid} from "../../shared/animal-grid/animal-grid";
 
 const initState = {
     loaderVisibility: false,
