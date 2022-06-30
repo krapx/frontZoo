@@ -1,6 +1,25 @@
 import "./draft.css"
+import {getStarters} from "../../api/zoo-animal.api";
+import {useEffect, useState} from "react";
+import {AnimalModel} from "../../model/animal.model";
 
 const Draft = () => {
+
+    const [starters, setStarters] = useState([] as AnimalModel[])
+
+    useEffect(() => {
+        handleGetStarters();
+    }, []);
+
+    const handleGetStarters = () =>{
+        getStarters().then(res =>{
+            setStarters(res.data);
+            console.log(res.data);
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+
     return (
         <div className="draft">
             <div className="draft__header">
@@ -12,21 +31,13 @@ const Draft = () => {
             <div className="draft__body">
                 <p className="draft__description">Cliquer sur l'animal de votre choix</p>
                 <div className="draft__choices">
-                    <a href="/game">
-                        <img className="draft__img selectable"
-                             src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YW5pbWFsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                             alt="fox"/>
-                    </a>
-                    <a href="/game">
-                        <img className="draft__img selectable"
-                             src="https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YW5pbWFsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                             alt="tiger"/>
-                    </a>
-                    <a href="/game">
-                        <img className="draft__img selectable"
-                             src="https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YW5pbWFsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                             alt="turtle"/>
-                    </a>
+                    {starters.map(value => (
+                        <a href="/game" key={value.id}>
+                            <img className="draft__img selectable"
+                                 src={value.image_link}
+                                 alt={value.name}/>
+                        </a>
+                    ))}
                 </div>
             </div>
         </div>
