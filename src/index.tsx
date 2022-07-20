@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<App />} />
+            <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/draft" element={<Draft />} />
             <Route path="/game" element={<Game />} />

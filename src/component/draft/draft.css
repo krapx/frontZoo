@@ -6,12 +6,6 @@
     justify-content: center;
 }
 
-.draft__header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .draft__body {
     display: flex;
     flex-direction: column;

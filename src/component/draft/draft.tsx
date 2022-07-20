@@ -1,46 +1,64 @@
 import "./draft.css"
-import {getStarters} from "../../api/zoo-animal.api";
+import {getStarters} from "../../api/animal/animal.api";
 import {useEffect, useState} from "react";
 import {AnimalModel} from "../../model/animal.model";
+import {useNavigate} from "react-router-dom";
+import {createUserAnimal} from "../../api/user-animal/user-animal.api";
+import {CreateUserAnimalRequest} from "../../api/user-animal/user-animal.dto";
+import {Loader} from "../shared/loader/loader";
 
 const Draft = () => {
-
+    const navigate = useNavigate();
     const [starters, setStarters] = useState([] as AnimalModel[])
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         handleGetStarters();
     }, []);
 
-    const handleGetStarters = () =>{
-        getStarters().then(res =>{
+    const handleGetStarters = () => {
+        setIsLoading(true)
+        getStarters().then(res => {
             setStarters(res.data);
             console.log(res.data);
         }).catch(err => {
             console.log(err);
-        })
+        }).finally(() => setTimeout(() => {
+            setIsLoading(false)
+        }, 1000))
+    }
+
+    function handleSelectAnimal(animal: AnimalModel) {
+        setIsLoading(true)
+        const body: CreateUserAnimalRequest = {
+            name: animal.name,
+            image: animal.image_link,
+            userId: 999,
+            zooId: 1000
+        };
+        createUserAnimal(body).then(res => {
+            navigate("/game")
+        }).finally(() => setIsLoading(false))
     }
 
     return (
-        <div className="draft">
-            <div className="draft__header">
-                <img className="draft__img"
-                     src="https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8dGVhY2hlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                     alt="teacher"/>
-                Professor
-            </div>
-            <div className="draft__body">
-                <p className="draft__description">Cliquer sur l'animal de votre choix</p>
-                <div className="draft__choices">
-                    {starters.map(value => (
-                        <a href="/game" key={value.id}>
-                            <img className="draft__img selectable"
-                                 src={value.image_link}
-                                 alt={value.name}/>
-                        </a>
-                    ))}
+        <>
+            <Loader visibility={isLoading}/>
+            <div className="draft">
+                <div className="draft__body">
+                    <p className="draft__description">Cliquer sur l'animal de votre choix</p>
+                    <div className="draft__choices">
+                        {starters.map(animal => (
+                            <button key={animal.id} onClick={() => handleSelectAnimal(animal)}>
+                                <img className="draft__img selectable"
+                                     src={animal.image_link}
+                                     alt={animal.name}/>
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

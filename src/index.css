@@ -8,6 +8,8 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: rgba(31,55,50);
+    color: white;
 }
 
 body {
