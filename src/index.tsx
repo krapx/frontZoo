@@ -9,12 +9,14 @@ import {FormGenerateZoo} from "./component/old/form-generate-zoo/form-generate-z
 import Home from "./component/home/home";
 import Draft from "./component/draft/draft";
 import Game from "./component/game/game";
+import Background from "./component/shared/background/background";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
     <BrowserRouter>
+        <Background/>
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
