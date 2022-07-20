@@ -33,7 +33,7 @@ const Draft = () => {
         const body: CreateUserAnimalRequest = {
             name: animal.name,
             image: animal.image_link,
-            userId: 999,
+            userId: 900,
             zooId: 1000
         };
         createUserAnimal(body).then(res => {

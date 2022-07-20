@@ -1,3 +1,5 @@
+import {CreateUserAnimalRequest} from "../user-animal/user-animal.dto";
+
 export interface ZooResponse {
     id: number
     name: string
@@ -15,4 +17,6 @@ export interface ZooResponseDetails {
     updatedAt: string
     userId: number
     killNumber: number
+    completedSpacesNumber: number
+    userAnimal: CreateUserAnimalRequest
 }
