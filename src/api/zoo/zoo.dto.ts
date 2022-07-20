@@ -1,4 +1,5 @@
 import {CreateUserAnimalRequest, UserAnimalResponse} from "../user-animal/user-animal.dto";
+import {AnimalResponse} from "../animal/animalResponse";
 
 export interface ZooResponse {
     id: number
@@ -30,4 +31,5 @@ export interface ZooGameDetailsResponse {
     userId: number
     killNumber: number
     userAnimal: UserAnimalResponse
+    animalsHistory: AnimalResponse[]
 }

@@ -1,0 +1,16 @@
+.AnimalHistory {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.AnimalHistory__img {
+    --img-size: 40px;
+    height: var(--img-size);
+    width: var(--img-size);
+    border-radius: 50px;
+    object-fit: cover;
+}
