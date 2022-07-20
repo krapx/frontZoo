@@ -21,7 +21,7 @@ root.render(
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/draft" element={<Draft />} />
-            <Route path="/game" element={<Game />} />
+            <Route path="/game/:zooId" element={<Game />} />
             {/*OLD*/}
             <Route path="/sandbox" element={<Sandbox />} />
             <Route path="/animals" element={<Sandbox />} />

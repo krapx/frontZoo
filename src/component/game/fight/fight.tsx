@@ -3,22 +3,24 @@ import {useEffect, useRef, useState} from "react";
 import {Avatar} from "@mui/material";
 import {getRandZooAnimal} from "../../../api/zoo-animal.api";
 import {ZooAnimalModel} from "../../../model/zoo-animal.model";
+import {Loader} from "../../shared/loader/loader";
+import {UserAnimalResponse} from "../../../api/user-animal/user-animal.dto";
 
-const Fight = () => {
+export interface AnimalFighter {
+    name: string
+    img: string
+    currentHP: number
+    maxHP: number
+}
+
+interface FightProps {
+    userAnimal: UserAnimalResponse
+}
+
+const Fight = (props: FightProps) => {
+    const {userAnimal} = props;
     const damageDealtContainer = useRef<HTMLDivElement>(null);
-    const [user, setUser] = useState({
-        name: "Rambo",
-        img: "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YW5pbWFsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-        ATK: 2,
-        HP: 200,
-        zoneDiscoveredCount: 1
-    });
-    const [animal, setAnimal] = useState({
-        name: "Bouftou",
-        img: "https://images.unsplash.com/photo-1519664824562-b4bc73f9795a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGFuaW1hbHN8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60",
-        currentHP: 20,
-        maxHP: 20
-    });
+    const [animal, setAnimal] = useState<AnimalFighter>(null);
 
     useEffect(() => {
         handleGetAnimal()
@@ -28,7 +30,7 @@ const Fight = () => {
         getRandZooAnimal().then(res => {
             const animal: ZooAnimalModel = res.data
             setAnimal({
-                name: animal.name || "",
+                name: animal.name,
                 img: animal.image_link,
                 currentHP: Math.floor(animal.weight_max * animal.length_max),
                 maxHP: Math.floor(animal.weight_max * animal.length_max)
@@ -37,7 +39,7 @@ const Fight = () => {
     }
 
     const handleATK = () => {
-        setAnimal(prevState => ({...animal, currentHP: prevState.currentHP - user.ATK}))
+        setAnimal(prevState => ({...animal, currentHP: prevState.currentHP - userAnimal.damage}))
         damageDealtContainer.current!.appendChild(showDamageDealt())
         if (animal.currentHP <= 0) {
             handleDeath()
@@ -61,11 +63,11 @@ const Fight = () => {
     const showDamageDealt = () => {
         const element = document.createElement("span")
         element.classList.add("fight__dealt", "fight__atk")
-        element.innerText = `-${user.ATK}`
+        element.innerText = `-${userAnimal.damage}`
         return element
     }
 
-
+    if (animal == null) return <Loader visibility/>
     return (
         <div className="fight">
             <div className="fight__header">{animal.name}</div>
@@ -83,9 +85,9 @@ const Fight = () => {
             </div>
             <div className="fight__footer">
                 <Avatar alt="my_animal"
-                        src={user.img}/>
+                        src={userAnimal.image}/>
                 ATK :
-                <span className="fight__atk">{user.ATK}</span>
+                <span className="fight__atk">{userAnimal.damage}</span>
             </div>
         </div>
     )

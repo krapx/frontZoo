@@ -2,14 +2,14 @@ import {Button} from "@mui/material"
 import "./home.css"
 import {getAllZooDetailsByUserId, getAllZoosByUserId} from "../../api/zoo/zoo.api";
 import {useEffect, useState} from "react";
-import {ZooResponseDetails} from "../../api/zoo/zoo.dto";
+import {ZooDetailsResponse} from "../../api/zoo/zoo.dto";
 import {Loader} from "../shared/loader/loader";
 import {convertToHumanReadableDate} from "../../common/file-utils";
 import Background from "../shared/background/background";
 
 const Home = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const [zoos, setZoos] = useState([] as ZooResponseDetails[]);
+    const [zoos, setZoos] = useState([] as ZooDetailsResponse[]);
 
     useEffect(() => {
         getAllZooDetailsByUserId(900).then(res => {
