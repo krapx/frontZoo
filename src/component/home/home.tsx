@@ -1,16 +1,16 @@
 import {Button} from "@mui/material"
 import "./home.css"
-import {getAllZoosByUserId} from "../../api/zoo/zoo.api";
+import {getAllZooDetailsByUserId, getAllZoosByUserId} from "../../api/zoo/zoo.api";
 import {useEffect, useState} from "react";
-import {ZooResponse} from "../../api/zoo/zoo.dto";
+import {ZooResponseDetails} from "../../api/zoo/zoo.dto";
 import {Loader} from "../shared/loader/loader";
 
 const Home = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const [zoos, setZoos] = useState([] as ZooResponse[]);
+    const [zoos, setZoos] = useState([] as ZooResponseDetails[]);
 
     useEffect(() => {
-        getAllZoosByUserId(999).then(res => {
+        getAllZooDetailsByUserId(999).then(res => {
             setZoos(res.data)
         }).finally(() => setIsLoading(false))
     }, []);
@@ -27,6 +27,8 @@ const Home = () => {
                         <button className="home__zoo">
                             <p>{zoo.name}</p>
                             <p>{zoo.zooStatus}</p>
+                            <p>{zoo.killNumber}</p>
+                            <p>{zoo.createdAt}</p>
                         </button>
                     ))
                 }
