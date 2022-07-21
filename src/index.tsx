@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import './common/animation.css';
-import App from './App';
 import {Sandbox} from "./component/old/sandbox/sandbox";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {FormGenerateZoo} from "./component/old/form-generate-zoo/form-generate-zoo";
@@ -11,6 +10,7 @@ import Draft from "./component/draft/draft";
 import Game from "./component/game/game";
 import Background from "./component/shared/background/background";
 import Login from "./component/login/login";
+import Register from "./component/register/register";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -22,6 +22,7 @@ root.render(
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/draft" element={<Draft />} />
             <Route path="/game/:zooId" element={<Game />} />
             {/*OLD*/}

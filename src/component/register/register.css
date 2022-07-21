@@ -1,4 +1,4 @@
-.login {
+.register {
     flex: 1;
     display: flex;
     align-items: center;
@@ -6,7 +6,7 @@
     color: black;
 }
 
-.login__form {
+.register__form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -14,8 +14,4 @@
     border-radius: 5px;
     padding: 50px;
     width: 50vw;
-}
-
-.register__button {
-    text-align: right;
 }

@@ -1,15 +1,16 @@
-import "./login.css"
-import {Button, TextField} from "@mui/material";
+import "./register.css"
+import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import {LoginRequest} from "../../api/auth/auth.dto";
-import {login} from "../../api/auth/auth.api";
-import {Link, useNavigate} from "react-router-dom";
+import {RegisterRequest} from "../../api/auth/auth.dto";
+import {Button, TextField} from "@mui/material";
+import {register} from "../../api/auth/auth.api";
 
 const initState = {
     username: "",
-    password: ""
+    password: "",
+    email:""
 };
-const Login = () => {
+const Register = () => {
     const navigate = useNavigate();
     const [state, setState] = useState(initState);
 
@@ -18,21 +19,23 @@ const Login = () => {
     function handleSubmit(e: any) {
         e.preventDefault()
 
-        const body: LoginRequest = {
+        const body: RegisterRequest = {
             username: state.username,
-            password: state.password
+            password: state.password,
+            email: state.email
+
         };
-        login(body).then( res => {
-            navigate("/home")
+        register(body).then( res => {
+            navigate("/login")
         }).finally(() => setState(e.target))
 
     }
 
 
     return (
-        <div className="login">
-            <form className="login__form" onSubmit={handleSubmit}>
-                <h2>Login</h2>
+        <div className="register">
+            <form className="register__form" onSubmit={handleSubmit}>
+                <h2>Register</h2>
                 <TextField
                     name="username"
                     label="username"
@@ -46,11 +49,16 @@ const Login = () => {
                     type="password"
                     onChange={handleSetState}
                 />
-                <Button variant="contained" type="submit">Login</Button>
-                <Link className="register__button" to={"/register"}>register</Link>
+                <TextField
+                    name="email"
+                    label="email"
+                    variant="standard"
+                    onChange={handleSetState}
+                />
+                <Button variant="contained" type="submit">Register</Button>
             </form>
         </div>
     )
 }
 
-export default Login
+export default Register
