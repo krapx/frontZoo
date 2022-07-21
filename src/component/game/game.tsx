@@ -9,44 +9,52 @@ import {ZooGameDetailsResponse} from "../../api/zoo/zoo.dto";
 import {Loader} from "../shared/loader/loader";
 import AnimalHistory from "./animal-history/animal-history";
 
+const initState = {
+    currentSpaceId: null,
+};
 const Game = () => {
     const {zooId} = useParams();
-    const [state, setState] = useState<ZooGameDetailsResponse>();
+    const [state, setState] = useState(initState);
+    const [zooGameDetails, setZooGameDetails] = useState<ZooGameDetailsResponse>();
 
     useEffect(() => {
         getZooGameDetailsById(zooId).then(res => {
-            setState(res.data)
+            setZooGameDetails(res.data)
         })
     }, []);
 
     const fetchAnimals = (e: any) => {
         e.preventDefault()
-
-        getRandZooAnimals(10).then(res => {
-            const data = res.data;
-        }).catch(err => {
-            console.log(err)
-        })
+        console.log("you click on me !")
+        //
+        // getRandZooAnimals(10).then(res => {
+        //     const data = res.data;
+        // }).catch(err => {
+        //     console.log(err)
+        // })
     }
 
-    if (state == null) return <Loader visibility/>
+    if (zooGameDetails == null) return <Loader visibility/>
     return (
         <div className="game">
             <div>
                 <h2>Historique</h2>
                 {
-                    state.animalsHistory.map(animal => (
+                    zooGameDetails.animalsHistory.map(animal => (
                         <AnimalHistory animal={animal}/>
                     ))
                 }
             </div>
             <div className="game__body">
-                <h2>{state.name}</h2>
+                <h2>{zooGameDetails.name}</h2>
                 <div className="game__fight">
-                    <Fight userAnimal={state.userAnimal}/>
+                    <Fight userAnimal={zooGameDetails.userAnimal}/>
                 </div>
                 <div className="game__map">
-                    <ZooMap fetchAnimals={fetchAnimals}/>
+                    <ZooMap
+                        fetchAnimals={fetchAnimals}
+                        spaces={zooGameDetails.spaces}
+                    />
                 </div>
             </div>
             <div>??????????????????????</div>

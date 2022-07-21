@@ -51,7 +51,7 @@ export const Sandbox = () => {
                         latin, le Lorem ipsum ou Lipsum.
                     </div>
                     <div className="map">
-                        <ZooMap fetchAnimals={fetchAnimals}/>
+                        {/*<ZooMap fetchAnimals={fetchAnimals}/>*/}
                     </div>
                 </div>
                 <AnimalGrid animals={state.animals}/>

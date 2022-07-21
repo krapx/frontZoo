@@ -1,5 +1,6 @@
 import {CreateUserAnimalRequest, UserAnimalResponse} from "../user-animal/user-animal.dto";
 import {AnimalResponse} from "../animal/animalResponse";
+import {SpaceResponse} from "../space/space.dto";
 
 export interface ZooResponse {
     id: number
@@ -32,4 +33,5 @@ export interface ZooGameDetailsResponse {
     killNumber: number
     userAnimal: UserAnimalResponse
     animalsHistory: AnimalResponse[]
+    spaces: SpaceResponse[]
 }

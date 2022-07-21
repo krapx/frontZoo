@@ -1,14 +1,17 @@
 import "./zoo-map.css"
+import {SpaceResponse} from "../../../api/space/space.dto";
 
 interface IZooMapProps {
     fetchAnimals: (e: any) => void
+    spaces: SpaceResponse[]
 }
 
 export const ZooMap = (props: IZooMapProps) => {
+    const {fetchAnimals, spaces} = props;
     return (
         <>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 362">
-                <g className="map-group" onClick={props.fetchAnimals}>
+                <g className={`map-group`} onClick={props.fetchAnimals}>
                     <title>River's Edge</title>
                     <path
                         className="rivers-edge map-zone"
@@ -21,8 +24,7 @@ export const ZooMap = (props: IZooMapProps) => {
                         transform="translate(-7.83 -6)"
                     />
                 </g>
-
-                <g className="map-group disabled" onClick={props.fetchAnimals}>
+                <g className={`map-group ${spaces.length >= 2 ? "" : "disabled"}`} onClick={props.fetchAnimals}>
                     <title>Discovery Corner</title>
                     <polygon
                         className="discovery-corner map-zone"
@@ -34,8 +36,7 @@ export const ZooMap = (props: IZooMapProps) => {
                         transform="translate(-7.83 -6)"
                     />
                 </g>
-
-                <g className="map-group disabled" onClick={props.fetchAnimals}>
+                <g className={`map-group ${spaces.length >= 3 ? "" : "disabled"}`} onClick={props.fetchAnimals}>
                     <title>Lakeside Crossing</title>
                     <polygon
                         className="lakeside-crossing map-zone"
@@ -47,8 +48,7 @@ export const ZooMap = (props: IZooMapProps) => {
                         transform="translate(-7.83 -6)"
                     />
                 </g>
-
-                <g className="map-group disabled" onClick={props.fetchAnimals}>
+                <g className={`map-group ${spaces.length >= 4 ? "" : "disabled"}`} onClick={props.fetchAnimals}>
                     <title>The Wild</title>
                     <polygon
                         className="the-wild map-zone"
@@ -60,8 +60,7 @@ export const ZooMap = (props: IZooMapProps) => {
                         transform="translate(-7.83 -6)"
                     />
                 </g>
-
-                <g className="map-group disabled" onClick={props.fetchAnimals}>
+                <g className={`map-group ${spaces.length >= 5 ? "" : "disabled"}`} onClick={props.fetchAnimals}>
                     <title>Historic Hill</title>
                     <polygon
                         className="historic-hill map-zone"
@@ -73,8 +72,7 @@ export const ZooMap = (props: IZooMapProps) => {
                         transform="translate(-7.83 -6)"
                     />
                 </g>
-
-                <g className="map-group disabled" onClick={props.fetchAnimals}>
+                <g className={`map-group ${spaces.length >= 6 ? "" : "disabled"}`} onClick={props.fetchAnimals}>
                     <title>Red Rocks</title>
                     <path
                         className="red-rocks map-zone"
