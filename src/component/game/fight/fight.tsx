@@ -4,7 +4,8 @@ import {Avatar} from "@mui/material";
 import {getRandZooAnimal} from "../../../api/zoo-animal.api";
 import {ZooAnimalModel} from "../../../model/zoo-animal.model";
 import {Loader} from "../../shared/loader/loader";
-import {UserAnimalResponse} from "../../../api/user-animal/user-animal.dto";
+import {PlayerAnimalResponse} from "../../../api/player-animal/player-animal.dto";
+import {AnimalResponse} from "../../../api/animal/animal.dto";
 
 export interface AnimalFighter {
     name: string
@@ -14,17 +15,41 @@ export interface AnimalFighter {
 }
 
 interface FightProps {
-    userAnimal: UserAnimalResponse
+    userAnimal: PlayerAnimalResponse
+    spaceAnimals: AnimalResponse[]
 }
 
 const Fight = (props: FightProps) => {
-    const {userAnimal} = props;
+    const {userAnimal, spaceAnimals} = props;
+
+    if (spaceAnimals.length === 0) return <></>
+    return <FightActive
+        spaceAnimals={spaceAnimals}
+        userAnimal={userAnimal}
+    />
+}
+
+const FightActive = (props: FightProps) => {
+    const {userAnimal, spaceAnimals} = props;
     const damageDealtContainer = useRef<HTMLDivElement>(null);
     const [animal, setAnimal] = useState<AnimalFighter>(null);
 
     useEffect(() => {
-        handleGetAnimal()
+        setAnimal({
+            name: spaceAnimals[0].name,
+            img: spaceAnimals[0].imageLink,
+            maxHP: spaceAnimals[0].weightMax * spaceAnimals[0].lengthMax,
+            currentHP: spaceAnimals[0].weightMax * spaceAnimals[0].lengthMax
+        })
+        // handleGetAnimal()
     }, []);
+
+    useEffect(() => {
+        if (animal?.currentHP < 1) {
+            handleDeath()
+            return;
+        }
+    }, [animal])
 
     const handleGetAnimal = () => {
         getRandZooAnimal().then(res => {
@@ -42,13 +67,6 @@ const Fight = (props: FightProps) => {
         setAnimal(prevState => ({...animal, currentHP: prevState.currentHP - userAnimal.damage}))
         damageDealtContainer.current!.appendChild(showDamageDealt())
     }
-
-    useEffect(() => {
-        if (animal?.currentHP < 1) {
-            handleDeath()
-            return;
-        }
-    },[animal])
 
     const handleDeath = () => {
         console.log(`${animal.name} est mort !`)

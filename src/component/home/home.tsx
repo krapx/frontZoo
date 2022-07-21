@@ -46,7 +46,7 @@ const Home = () => {
                                     <div>{convertToHumanReadableDate(zoo.createdAt)}</div>
                                 </div>
                             </div>
-                            <img className="home__zoo__img" src={zoo.userAnimal.image} alt="imgUserAnimal"/>
+                            <img className="home__zoo__img" src={zoo.playerAnimal.image} alt="imgUserAnimal"/>
                         </button>
                     ))
                 }

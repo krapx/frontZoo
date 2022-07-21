@@ -10,6 +10,7 @@ import Home from "./component/home/home";
 import Draft from "./component/draft/draft";
 import Game from "./component/game/game";
 import Background from "./component/shared/background/background";
+import Login from "./component/login/login";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -20,6 +21,7 @@ root.render(
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/draft" element={<Draft />} />
             <Route path="/game/:zooId" element={<Game />} />
             {/*OLD*/}

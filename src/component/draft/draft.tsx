@@ -3,8 +3,8 @@ import {getStarters} from "../../api/animal/animal.api";
 import {useEffect, useState} from "react";
 import {AnimalModel} from "../../model/animal.model";
 import {useNavigate} from "react-router-dom";
-import {createUserAnimal} from "../../api/user-animal/user-animal.api";
-import {CreateUserAnimalRequest} from "../../api/user-animal/user-animal.dto";
+import {createPlayerAnimal} from "../../api/player-animal/player-animal.api";
+import {CreatePlayerAnimalRequest} from "../../api/player-animal/player-animal.dto";
 import {Loader} from "../shared/loader/loader";
 
 const Draft = () => {
@@ -30,13 +30,13 @@ const Draft = () => {
 
     function handleSelectAnimal(animal: AnimalModel) {
         setIsLoading(true)
-        const body: CreateUserAnimalRequest = {
+        const body: CreatePlayerAnimalRequest = {
             name: animal.name,
             image: animal.image_link,
-            userId: 900,
+            playerId: 900,
             zooId: 1000
         };
-        createUserAnimal(body).then(res => {
+        createPlayerAnimal(body).then(res => {
             navigate("/game")
         }).finally(() => setIsLoading(false))
     }

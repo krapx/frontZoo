@@ -1,5 +1,5 @@
-import {CreateUserAnimalRequest, UserAnimalResponse} from "../user-animal/user-animal.dto";
-import {AnimalResponse} from "../animal/animalResponse";
+import {CreatePlayerAnimalRequest, PlayerAnimalResponse} from "../player-animal/player-animal.dto";
+import {AnimalResponse} from "../animal/animal.dto";
 import {SpaceResponse} from "../space/space.dto";
 
 export interface ZooResponse {
@@ -17,10 +17,10 @@ export interface ZooDetailsResponse {
     zooStatus: 'IN_PROGRESS' | 'FINISH'
     createdAt: string
     updatedAt: string
-    userId: number
+    playerId: number
     killNumber: number
     completedSpacesNumber: number
-    userAnimal: CreateUserAnimalRequest
+    playerAnimal: CreatePlayerAnimalRequest
 }
 
 export interface ZooGameDetailsResponse {
@@ -29,9 +29,9 @@ export interface ZooGameDetailsResponse {
     zooStatus: 'IN_PROGRESS' | 'FINISH'
     createdAt: string
     updatedAt: string
-    userId: number
+    playerId: number
     killNumber: number
-    userAnimal: UserAnimalResponse
+    playerAnimal: PlayerAnimalResponse
     animalsHistory: AnimalResponse[]
     spaces: SpaceResponse[]
 }

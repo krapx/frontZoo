@@ -1,17 +1,17 @@
-export interface CreateUserAnimalRequest {
+export interface CreatePlayerAnimalRequest {
     name: string
     image: string
-    userId: number
+    playerId: number
     zooId: number
 }
 
-export interface UserAnimalResponse {
+export interface PlayerAnimalResponse {
     id: number
     damage: number
     name: string
     image: string
     creationAt: string
     updatedAt: string
-    userId: number
+    playerId: number
     zooId: number
 }
