@@ -41,11 +41,14 @@ const Fight = (props: FightProps) => {
     const handleATK = () => {
         setAnimal(prevState => ({...animal, currentHP: prevState.currentHP - userAnimal.damage}))
         damageDealtContainer.current!.appendChild(showDamageDealt())
-        if (animal.currentHP <= 0) {
+    }
+
+    useEffect(() => {
+        if (animal?.currentHP < 1) {
             handleDeath()
             return;
         }
-    }
+    },[animal])
 
     const handleDeath = () => {
         console.log(`${animal.name} est mort !`)
