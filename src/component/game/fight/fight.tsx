@@ -31,21 +31,23 @@ const Fight = (props: FightProps) => {
 
 const FightActive = (props: FightProps) => {
     const {userAnimal, spaceAnimals} = props;
+    const [indexCurrentAnimal, setIndexCurrentAnimal] = useState(0);
     const damageDealtContainer = useRef<HTMLDivElement>(null);
     const [animal, setAnimal] = useState<AnimalFighter>(null);
 
     useEffect(() => {
         setAnimal({
-            name: spaceAnimals[0].name,
-            img: spaceAnimals[0].imageLink,
-            maxHP: spaceAnimals[0].weightMax * spaceAnimals[0].lengthMax,
-            currentHP: spaceAnimals[0].weightMax * spaceAnimals[0].lengthMax
+            name: spaceAnimals[indexCurrentAnimal].name,
+            img: spaceAnimals[indexCurrentAnimal].imageLink,
+            maxHP: spaceAnimals[indexCurrentAnimal].weightMax * spaceAnimals[indexCurrentAnimal].lengthMax,
+            currentHP: spaceAnimals[indexCurrentAnimal].weightMax * spaceAnimals[indexCurrentAnimal].lengthMax
         })
         // handleGetAnimal()
-    }, []);
+    }, [spaceAnimals, indexCurrentAnimal]);
 
     useEffect(() => {
         if (animal?.currentHP < 1) {
+            setIndexCurrentAnimal(prevState => (prevState + 1) % 6)
             handleDeath()
             return;
         }
@@ -72,7 +74,7 @@ const FightActive = (props: FightProps) => {
         console.log(`${animal.name} est mort !`)
         setAnimal(prevState => ({...animal, currentHP: prevState.maxHP}))
         clearDamageDealtContainer()
-        handleGetAnimal()
+        // handleGetAnimal()
     }
 
     const clearDamageDealtContainer = () => {
