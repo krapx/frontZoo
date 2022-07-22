@@ -48,7 +48,7 @@ const Game = () => {
                 <h2>{zooGameDetails.name}</h2>
                 <div className="game__fight">
                     <Fight
-                        userAnimal={zooGameDetails.playerAnimal}
+                        userAnimals={zooGameDetails.playerAnimals}
                         spaceAnimals={spaceAnimals}
                     />
                 </div>

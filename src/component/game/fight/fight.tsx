@@ -5,7 +5,8 @@ import {getRandZooAnimal} from "../../../api/zoo-animal.api";
 import {ZooAnimalModel} from "../../../model/zoo-animal.model";
 import {Loader} from "../../shared/loader/loader";
 import {PlayerAnimalResponse} from "../../../api/player-animal/player-animal.dto";
-import {AnimalResponse} from "../../../api/animal/animal.dto";
+import {AnimalResponse, UpdateAnimalRequest} from "../../../api/animal/animal.dto";
+import {updateAnimal} from "../../../api/animal/animal.api";
 
 export interface AnimalFighter {
     name: string
@@ -15,22 +16,22 @@ export interface AnimalFighter {
 }
 
 interface FightProps {
-    userAnimal: PlayerAnimalResponse
+    userAnimals: PlayerAnimalResponse[]
     spaceAnimals: AnimalResponse[]
 }
 
 const Fight = (props: FightProps) => {
-    const {userAnimal, spaceAnimals} = props;
+    const {userAnimals, spaceAnimals} = props;
 
     if (spaceAnimals.length === 0) return <></>
     return <FightActive
         spaceAnimals={spaceAnimals}
-        userAnimal={userAnimal}
+        userAnimals={userAnimals}
     />
 }
 
 const FightActive = (props: FightProps) => {
-    const {userAnimal, spaceAnimals} = props;
+    const {userAnimals, spaceAnimals} = props;
     const [indexCurrentAnimal, setIndexCurrentAnimal] = useState(0);
     const damageDealtContainer = useRef<HTMLDivElement>(null);
     const [animal, setAnimal] = useState<AnimalFighter>(null);
@@ -47,12 +48,12 @@ const FightActive = (props: FightProps) => {
 
     useEffect(() => {
         if (animal?.currentHP < 1) {
+            handleDeath()
             if (indexCurrentAnimal === spaceAnimals.length - 1) {
                 setIndexCurrentAnimal(0)
             } else {
                 setIndexCurrentAnimal(prevState => (prevState + 1))
             }
-            handleDeath()
             return;
         }
     }, [animal])
@@ -70,15 +71,17 @@ const FightActive = (props: FightProps) => {
     }
 
     const handleATK = () => {
-        setAnimal(prevState => ({...animal, currentHP: prevState.currentHP - userAnimal.damage}))
+        setAnimal(prevState => ({...animal, currentHP: prevState.currentHP - getTeamDamage()}))
         damageDealtContainer.current!.appendChild(showDamageDealt())
     }
 
     const handleDeath = () => {
         console.log(`${animal.name} est mort !`)
-        setAnimal(prevState => ({...animal, currentHP: prevState.maxHP}))
+        // setAnimal(prevState => ({...animal, currentHP: prevState.maxHP}))
         clearDamageDealtContainer()
-        // handleGetAnimal()
+
+        const body: UpdateAnimalRequest = {...spaceAnimals[indexCurrentAnimal]}
+        updateAnimal(body).then()
     }
 
     const clearDamageDealtContainer = () => {
@@ -90,8 +93,14 @@ const FightActive = (props: FightProps) => {
     const showDamageDealt = () => {
         const element = document.createElement("span")
         element.classList.add("fight__dealt", "fight__atk")
-        element.innerText = `-${userAnimal.damage}`
+        element.innerText = `-${getTeamDamage()}`
         return element
+    }
+
+    const getTeamDamage = (): number => {
+        return userAnimals
+            .map(value => value.damage)
+            .reduce((a, b) => a + b)
     }
 
     if (animal == null) return <Loader visibility/>
@@ -112,9 +121,9 @@ const FightActive = (props: FightProps) => {
             </div>
             <div className="fight__footer">
                 <Avatar alt="my_animal"
-                        src={userAnimal.image}/>
+                        src={userAnimals[0].image}/>
                 ATK :
-                <span className="fight__atk">{userAnimal.damage}</span>
+                <span className="fight__atk">{getTeamDamage()}</span>
             </div>
         </div>
     )

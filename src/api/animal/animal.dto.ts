@@ -8,3 +8,13 @@ export interface AnimalResponse {
     arrivalDate: string
     imageLink: string
 }
+
+export interface UpdateAnimalRequest {
+    name: string
+    type: string
+    status: string
+    lengthMax: number
+    weightMax: number
+    arrivalDate: string
+    imageLink: string
+}

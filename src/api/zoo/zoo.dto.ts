@@ -31,7 +31,7 @@ export interface ZooGameDetailsResponse {
     updatedAt: string
     playerId: number
     killNumber: number
-    playerAnimal: PlayerAnimalResponse
+    playerAnimals: PlayerAnimalResponse[]
     animalsHistory: AnimalResponse[]
     spaces: SpaceResponse[]
 }
