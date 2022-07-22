@@ -35,3 +35,14 @@ export interface ZooGameDetailsResponse {
     animalsHistory: AnimalResponse[]
     spaces: SpaceResponse[]
 }
+
+export interface GenerateZoo {
+    playerAnimal: {
+        name: string
+        image: string
+    }
+    spaces: {
+        name: string
+        animalsNumber: number
+    }[]
+}

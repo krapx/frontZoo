@@ -34,7 +34,7 @@ export const FormGenerateZoo = () => {
     }
     const handlerSubmit = (e:any) => {
         e.preventDefault()
-        postGenerateZooGame(JSON.stringify(state))
+        // postGenerateZooGame(JSON.stringify(state))
     }
 
     return (

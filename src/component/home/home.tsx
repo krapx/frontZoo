@@ -11,7 +11,7 @@ const Home = () => {
     const [zoos, setZoos] = useState([] as ZooDetailsResponse[]);
 
     useEffect(() => {
-        getAllZooDetailsByPlayerId(900).then(res => {
+        getAllZooDetailsByPlayerId().then(res => {
             setZoos(res.data)
         }).finally(() => setIsLoading(false))
     }, []);

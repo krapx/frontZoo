@@ -6,6 +6,8 @@ import {useNavigate} from "react-router-dom";
 import {createPlayerAnimal} from "../../api/player-animal/player-animal.api";
 import {CreatePlayerAnimalRequest} from "../../api/player-animal/player-animal.dto";
 import {Loader} from "../shared/loader/loader";
+import {postGenerateZooGame} from "../../api/zoo/zoo.api";
+import {GenerateZoo} from "../../api/zoo/zoo.dto";
 
 const Draft = () => {
     const navigate = useNavigate();
@@ -30,14 +32,22 @@ const Draft = () => {
 
     function handleSelectAnimal(animal: AnimalModel) {
         setIsLoading(true)
-        const body: CreatePlayerAnimalRequest = {
-            name: animal.name,
-            image: animal.image_link,
-            playerId: 900,
-            zooId: 1000
+        const body: GenerateZoo = {
+            playerAnimal: {
+                name: animal.name,
+                image: animal.image_link
+            },
+            spaces: [
+                {name: "Death Road Road", animalsNumber: 6},
+                {name: "Snake Island", animalsNumber: 6},
+                {name: "Death Valley", animalsNumber: 6},
+                {name: "Danakil Desert", animalsNumber: 6},
+                {name: "Gates Of Hell", animalsNumber: 6},
+                {name: "Oymyakon", animalsNumber: 6},
+            ]
         };
-        createPlayerAnimal(body).then(res => {
-            navigate("/game")
+        postGenerateZooGame(body).then(res => {
+            navigate(`/game/${res.data}`)
         }).finally(() => setIsLoading(false))
     }
 

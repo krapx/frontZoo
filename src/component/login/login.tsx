@@ -4,6 +4,7 @@ import {useState} from "react";
 import {LoginRequest} from "../../api/auth/auth.dto";
 import {login} from "../../api/auth/auth.api";
 import {Link, useNavigate} from "react-router-dom";
+import axios from "axios";
 
 const initState = {
     username: "",
@@ -24,6 +25,7 @@ const Login = () => {
         };
         login(body).then( res => {
             localStorage.setItem('token', res.data);
+            axios.defaults.headers.common['Authorization'] =`Bearer ${localStorage.getItem('token')}`
             navigate("/home")
         })
 

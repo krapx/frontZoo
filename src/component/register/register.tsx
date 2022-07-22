@@ -28,7 +28,6 @@ const Register = () => {
         })
     }
 
-
     return (
         <div className="register">
             <form className="register__form" onSubmit={handleSubmit}>
