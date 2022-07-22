@@ -11,6 +11,9 @@ import Game from "./component/game/game";
 import Background from "./component/shared/background/background";
 import Login from "./component/login/login";
 import Register from "./component/register/register";
+import axios from "axios";
+
+axios.defaults.headers.common['Authorization'] =`Bearer ${localStorage.getItem('token')}`
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

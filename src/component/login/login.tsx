@@ -23,8 +23,8 @@ const Login = () => {
             password: state.password
         };
         login(body).then( res => {
-            console.log(res.data)
-            // navigate("/home")
+            localStorage.setItem('token', res.data);
+            navigate("/home")
         })
 
     }

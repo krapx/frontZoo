@@ -16,7 +16,6 @@ const Home = () => {
         }).finally(() => setIsLoading(false))
     }, []);
 
-
     if (isLoading) return <Loader visibility={isLoading}/>
     return (
         <div className="home">

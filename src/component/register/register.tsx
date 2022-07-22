@@ -18,17 +18,14 @@ const Register = () => {
 
     function handleSubmit(e: any) {
         e.preventDefault()
-
         const body: RegisterRequest = {
             username: state.username,
             password: state.password,
             email: state.email
-
         };
         register(body).then( res => {
             navigate("/login")
-        }).finally(() => setState(e.target))
-
+        })
     }
 
 
