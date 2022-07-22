@@ -1,18 +1,17 @@
 import {Button} from "@mui/material"
 import "./home.css"
-import {getAllZooDetailsByUserId, getAllZoosByUserId} from "../../api/zoo/zoo.api";
+import {getAllZooDetailsByPlayerId} from "../../api/zoo/zoo.api";
 import {useEffect, useState} from "react";
 import {ZooDetailsResponse} from "../../api/zoo/zoo.dto";
 import {Loader} from "../shared/loader/loader";
 import {convertToHumanReadableDate} from "../../common/file-utils";
-import Background from "../shared/background/background";
 
 const Home = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [zoos, setZoos] = useState([] as ZooDetailsResponse[]);
 
     useEffect(() => {
-        getAllZooDetailsByUserId(900).then(res => {
+        getAllZooDetailsByPlayerId(900).then(res => {
             setZoos(res.data)
         }).finally(() => setIsLoading(false))
     }, []);
@@ -52,7 +51,7 @@ const Home = () => {
                 }
             </div>
             <div className="home__actions">
-      9+          <Button href="/draft" variant="contained">New Save</Button>
+                <Button href="/draft" variant="contained">New Save</Button>
             </div>
         </div>
     )

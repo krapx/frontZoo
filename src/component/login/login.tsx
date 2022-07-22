@@ -23,8 +23,9 @@ const Login = () => {
             password: state.password
         };
         login(body).then( res => {
-            navigate("/home")
-        }).finally(() => setState(e.target))
+            console.log(res.data)
+            // navigate("/home")
+        })
 
     }
 

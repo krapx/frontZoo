@@ -47,7 +47,11 @@ const FightActive = (props: FightProps) => {
 
     useEffect(() => {
         if (animal?.currentHP < 1) {
-            setIndexCurrentAnimal(prevState => (prevState + 1) % 6)
+            if (indexCurrentAnimal === spaceAnimals.length - 1) {
+                setIndexCurrentAnimal(0)
+            } else {
+                setIndexCurrentAnimal(prevState => (prevState + 1))
+            }
             handleDeath()
             return;
         }
