@@ -1,3 +1,4 @@
+import "./game-fight.css"
 import Fight from "../fight/fight";
 import {ZooMap} from "../../shared/zoo-map/zoo-map";
 import {ZooGameDetailsResponse} from "../../../api/zoo/zoo.dto";
@@ -8,19 +9,22 @@ interface GameBodyProps {
     zooGameDetails: ZooGameDetailsResponse
     spaceAnimals: AnimalResponse[]
     fetchAnimals: (e: any, index: number) => void
+    setAnimalsHistory: (value: AnimalResponse[]) => void
 }
 
 const GameBody = (props: GameBodyProps) => {
-    const {zooGameDetails, spaceAnimals, fetchAnimals} = props
+    const {zooGameDetails, spaceAnimals, fetchAnimals, setAnimalsHistory} = props
     return (
-        <div className="game__body">
-            <h2>{zooGameDetails.name}</h2>
+        <div className="GameBody">
+            <h2 className="GameBody__title">{zooGameDetails.name}</h2>
             {spaceAnimals.length === 0
                 ? <></>
                 : (
                     <Fight
+                        setAnimalsHistory={setAnimalsHistory}
                         userAnimals={zooGameDetails.playerAnimals}
                         spaceAnimals={spaceAnimals}
+                        zooId={zooGameDetails.id}
                     />
                 )
             }

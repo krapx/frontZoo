@@ -4,7 +4,8 @@ import {Avatar} from "@mui/material";
 import {Loader} from "../../shared/loader/loader";
 import {PlayerAnimalResponse} from "../../../api/player-animal/player-animal.dto";
 import {AnimalResponse} from "../../../api/animal/animal.dto";
-import {updateAnimalStatus} from "../../../api/animal/animal.api";
+import {getAllBySpaceIdInAndStatus, updateAnimalStatus} from "../../../api/animal/animal.api";
+import {ZooGameDetailsResponse} from "../../../api/zoo/zoo.dto";
 
 export interface AnimalFighter {
     name: string
@@ -14,22 +15,28 @@ export interface AnimalFighter {
 }
 
 interface FightProps {
+    zooId: number
     userAnimals: PlayerAnimalResponse[]
     spaceAnimals: AnimalResponse[]
+    setAnimalsHistory: (value: AnimalResponse[]) => void
 }
 
 const Fight = (props: FightProps) => {
-    const {userAnimals, spaceAnimals} = props;
+    const {userAnimals, spaceAnimals, zooId, setAnimalsHistory} = props;
 
     if (spaceAnimals.length === 0) return <></>
-    return <FightActive
-        spaceAnimals={spaceAnimals}
-        userAnimals={userAnimals}
-    />
+    return (
+        <FightActive
+            spaceAnimals={spaceAnimals}
+            userAnimals={userAnimals}
+            zooId={zooId}
+            setAnimalsHistory={setAnimalsHistory}
+        />
+    )
 }
 
 const FightActive = (props: FightProps) => {
-    const {userAnimals, spaceAnimals} = props;
+    const {userAnimals, spaceAnimals, zooId, setAnimalsHistory} = props;
     const [indexCurrentAnimal, setIndexCurrentAnimal] = useState(0);
     const damageDealtContainer = useRef<HTMLDivElement>(null);
     const [animal, setAnimal] = useState<AnimalFighter>({
@@ -68,7 +75,11 @@ const FightActive = (props: FightProps) => {
     const handleDeath = () => {
         clearDamageDealtContainer()
         if (spaceAnimals[indexCurrentAnimal].status === "Dead") return;
-        updateAnimalStatus(spaceAnimals[indexCurrentAnimal].id, "Dead").then()
+        updateAnimalStatus(spaceAnimals[indexCurrentAnimal].id, "Dead").then(res => {
+            getAllBySpaceIdInAndStatus(zooId).then(res2 => {
+                setAnimalsHistory(res.data)
+            })
+        })
     }
 
     const clearDamageDealtContainer = () => {

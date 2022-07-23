@@ -34,12 +34,20 @@ const Game = () => {
         })
     }
 
+    function setAnimalsHistory(value: AnimalResponse[]) {
+        // setZooGameDetails(prevState => ({...prevState, animalsHistory: value}))
+        getZooGameDetailsById(zooId).then(res => {
+            setZooGameDetails(res.data)
+        })
+    }
+
     if (zooGameDetails == null) return <Loader visibility/>
     return (
         <div className="game">
             <GameTeam zooGameDetails={zooGameDetails}/>
             <GameBody
                 zooGameDetails={zooGameDetails}
+                setAnimalsHistory={setAnimalsHistory}
                 fetchAnimals={fetchAnimals}
                 spaceAnimals={spaceAnimals}
             />
