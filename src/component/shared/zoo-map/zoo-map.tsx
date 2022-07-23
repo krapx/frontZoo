@@ -31,7 +31,10 @@ export const ZooMap = (props: IZooMapProps) => {
     return (
         <div className="ZooMap">
             {currentSpace
-                ? <div className="ZooMap__currentSpace">{currentSpace.name}</div>
+                ? <div className="ZooMap__details">
+                    <div >{currentSpace.name} </div>
+                    <div className="ZooMap__deadCount">{currentSpace.defeatedCount} defeated</div>
+                   </div>
                 : <></>
             }
             <div className="ZooMap__spaces">

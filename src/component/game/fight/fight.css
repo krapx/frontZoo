@@ -21,6 +21,8 @@
     background-color: rgba(0, 0, 0, 0.6);
     color: white;
     z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .fight__body {

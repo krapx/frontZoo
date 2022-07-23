@@ -3,4 +3,5 @@ export interface SpaceResponse {
     name: string
     status: 'LOCKED' | 'IN_PROGRESS' | 'COMPLETED'
     zooId: number
+    defeatedCount: number
 }
