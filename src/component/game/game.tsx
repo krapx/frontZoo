@@ -29,7 +29,6 @@ const Game = () => {
 
     const fetchAnimals = (e: any, index: number) => {
         e.preventDefault()
-        if (zooGameDetails.spaces.length - 1 < index) return;
         getAnimalsBySpaceId(zooGameDetails.spaces[index].id).then(res => {
             setSpaceAnimals(res.data)
         })
@@ -61,12 +60,10 @@ const Game = () => {
                             />
                         )
                 }
-                <div className="game__map">
-                    <ZooMap
-                        fetchAnimals={fetchAnimals}
-                        spaces={zooGameDetails.spaces}
-                    />
-                </div>
+                <ZooMap
+                    fetchAnimals={fetchAnimals}
+                    spaces={zooGameDetails.spaces}
+                />
             </div>
             <div className="game__history">
                 <h2>

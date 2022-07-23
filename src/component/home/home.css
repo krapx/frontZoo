@@ -7,9 +7,15 @@
     justify-content: center;
 }
 
+.home__title {
+    font-size: 60px;
+}
+
 .home__zoos {
-    display: flex;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    margin: 1rem 0;
 }
 
 .home__zoo {

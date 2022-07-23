@@ -8,22 +8,10 @@
 
 .game__fight {
     min-height: 400px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     max-width: 540px;
     width: 100%;
     display: flex;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    background-color: white;
-}
-
-.game__map {
-    max-width: 540px;
-    min-height: 40vh;
-    width: 100%;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     background-color: white;
 }
 

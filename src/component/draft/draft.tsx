@@ -6,6 +6,7 @@ import {useNavigate} from "react-router-dom";
 import {Loader} from "../shared/loader/loader";
 import {postGenerateZooGame} from "../../api/zoo/zoo.api";
 import {GenerateZoo} from "../../api/zoo/zoo.dto";
+import {getRandomArbitrary} from "../../common/file-utils";
 
 const Draft = () => {
     const navigate = useNavigate();
@@ -36,12 +37,12 @@ const Draft = () => {
                 image: animal.image_link
             },
             spaces: [
-                {name: "Death Road Road", animalsNumber: 6},
-                {name: "Snake Island", animalsNumber: 6},
-                {name: "Death Valley", animalsNumber: 6},
-                {name: "Danakil Desert", animalsNumber: 6},
-                {name: "Gates Of Hell", animalsNumber: 6},
-                {name: "Oymyakon", animalsNumber: 6},
+                {name: "Death Road Road", animalsNumber: getRandomArbitrary(6, 10)},
+                {name: "Snake Island", animalsNumber: getRandomArbitrary(6, 10)},
+                {name: "Death Valley", animalsNumber: getRandomArbitrary(6, 10)},
+                {name: "Danakil Desert", animalsNumber: getRandomArbitrary(6, 10)},
+                {name: "Gates Of Hell", animalsNumber: getRandomArbitrary(6, 10)},
+                {name: "Oymyakon", animalsNumber: getRandomArbitrary(6, 10)},
             ]
         };
         postGenerateZooGame(body).then(res => {

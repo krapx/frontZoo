@@ -1,6 +1,6 @@
 export interface SpaceResponse {
     id: number
     name: string
-    status: string
+    status: 'LOCKED' | 'IN_PROGRESS' | 'COMPLETED'
     zooId: number
 }
