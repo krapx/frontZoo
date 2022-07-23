@@ -14,6 +14,18 @@ import Register from "./component/register/register";
 import axios from "axios";
 
 axios.defaults.headers.common['Authorization'] =`Bearer ${localStorage.getItem('token')}`
+axios.interceptors.response.use(
+    res => res,
+    err => {
+        // Any HTTP Code which is not 2xx will be considered as error
+        const statusCode = err.response.status;
+        if (statusCode === 401 || statusCode === 403) {
+            document.location.href = '/login';
+        }
+
+        throw err;
+    }
+);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

@@ -1,9 +1,13 @@
 .fight {
     flex: 1;
     display: flex;
+    width: 100%;
+    max-width: 540px;
+    background-color: white;
     flex-direction: column;
     user-select: none;
     position: relative;
+    animation: 0.5s linear smooth-apparition;
 }
 
 .fight__header {

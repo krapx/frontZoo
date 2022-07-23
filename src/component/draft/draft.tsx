@@ -3,8 +3,6 @@ import {getStarters} from "../../api/animal/animal.api";
 import {useEffect, useState} from "react";
 import {AnimalModel} from "../../model/animal.model";
 import {useNavigate} from "react-router-dom";
-import {createPlayerAnimal} from "../../api/player-animal/player-animal.api";
-import {CreatePlayerAnimalRequest} from "../../api/player-animal/player-animal.dto";
 import {Loader} from "../shared/loader/loader";
 import {postGenerateZooGame} from "../../api/zoo/zoo.api";
 import {GenerateZoo} from "../../api/zoo/zoo.dto";

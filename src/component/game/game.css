@@ -40,3 +40,8 @@
     gap: 0.5rem;
     font-size: 15px;
 }
+
+.game__badge {
+    font-size: 12px;
+    margin-left: 5px;
+}

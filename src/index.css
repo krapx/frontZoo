@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: monospace;
 }
 
 #root {
@@ -44,6 +45,10 @@ code {
     animation: 5s linear smooth-apparition;
 }
 
+.collapse {
+    animation: 1s linear collapse;
+}
+
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -71,4 +76,5 @@ code {
 button {
     border: none;
     outline: none;
+    cursor: pointer;
 }

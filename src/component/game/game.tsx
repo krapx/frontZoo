@@ -9,6 +9,8 @@ import {Loader} from "../shared/loader/loader";
 import AnimalHistory from "./animal-history/animal-history";
 import {getAnimalsBySpaceId} from "../../api/animal/animal.api";
 import {AnimalResponse} from "../../api/animal/animal.dto";
+import {Badge} from "@mui/material";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const initState = {
     currentSpaceId: null,
@@ -37,7 +39,12 @@ const Game = () => {
     return (
         <div className="game">
             <div className="game__history">
-                <h2>Mon équipe</h2>
+                <h2>
+                    Mon équipe
+                    <span className="game__badge" hidden={zooGameDetails.playerAnimals.length === 0}>
+                        ({zooGameDetails.playerAnimals.length})
+                    </span>
+                </h2>
                 {zooGameDetails.playerAnimals.map(playerAnimal => (
                     <div>{playerAnimal.name}</div>
                 ))}
@@ -48,12 +55,10 @@ const Game = () => {
                     spaceAnimals.length === 0
                         ? <></>
                         : (
-                            <div className="game__fight">
-                                <Fight
-                                    userAnimals={zooGameDetails.playerAnimals}
-                                    spaceAnimals={spaceAnimals}
-                                />
-                            </div>
+                            <Fight
+                                userAnimals={zooGameDetails.playerAnimals}
+                                spaceAnimals={spaceAnimals}
+                            />
                         )
                 }
                 <div className="game__map">
@@ -64,7 +69,12 @@ const Game = () => {
                 </div>
             </div>
             <div className="game__history">
-                <h2>Historique</h2>
+                <h2>
+                    Historique
+                    <span className="game__badge" hidden={zooGameDetails.animalsHistory.length === 0}>
+                        ({zooGameDetails.animalsHistory.length} animaux découverts)
+                    </span>
+                </h2>
                 {zooGameDetails.animalsHistory.map(animal => (
                     <AnimalHistory key={animal.id} animal={animal}/>
                 ))}

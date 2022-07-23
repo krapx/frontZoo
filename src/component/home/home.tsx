@@ -5,8 +5,10 @@ import {useEffect, useState} from "react";
 import {ZooDetailsResponse} from "../../api/zoo/zoo.dto";
 import {Loader} from "../shared/loader/loader";
 import {convertToHumanReadableDate} from "../../common/file-utils";
+import {useNavigate} from "react-router-dom";
 
 const Home = () => {
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [zoos, setZoos] = useState([] as ZooDetailsResponse[]);
 
@@ -24,7 +26,7 @@ const Home = () => {
             <div className="home__zoos">
                 {
                     zoos.map(zoo => (
-                        <button className="home__zoo">
+                        <button className="home__zoo" onClick={() => navigate(`/game/${zoo.id}`)}>
                             <div className="home__zoo__info">
                                 <h2>{zoo.name}</h2>
                                 <div className="home__zoo__row">

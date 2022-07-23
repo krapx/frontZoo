@@ -7,6 +7,17 @@
     }
 }
 
+@keyframes collapse {
+    from {
+        height: 0;
+        overflow: hidden;
+        flex: none;
+    }
+    to {
+        height: 100%;
+    }
+}
+
 @keyframes move_eye {
     from {
         opacity: 1;
