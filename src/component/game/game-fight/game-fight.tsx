@@ -4,7 +4,6 @@ import {ZooMap} from "../../shared/zoo-map/zoo-map";
 import {ZooGameDetailsResponse} from "../../../api/zoo/zoo.dto";
 import {AnimalResponse} from "../../../api/animal/animal.dto";
 
-
 interface GameBodyProps {
     zooGameDetails: ZooGameDetailsResponse
     spaceAnimals: AnimalResponse[]

@@ -75,8 +75,8 @@ const FightActive = (props: FightProps) => {
     const handleDeath = () => {
         clearDamageDealtContainer()
         if (spaceAnimals[indexCurrentAnimal].status === "Dead") return;
-        updateAnimalStatus(spaceAnimals[indexCurrentAnimal].id, "Dead").then(res => {
-            getAllBySpaceIdInAndStatus(zooId).then(res2 => {
+        updateAnimalStatus(spaceAnimals[indexCurrentAnimal].id, "Dead").then(() => {
+            getAllBySpaceIdInAndStatus(zooId).then(res => {
                 setAnimalsHistory(res.data)
             })
         })
