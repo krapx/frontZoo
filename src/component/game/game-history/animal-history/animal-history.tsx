@@ -1,5 +1,5 @@
 import "./animal-history.css"
-import {AnimalResponse} from "../../../api/animal/animal.dto";
+import {AnimalResponse} from "../../../../api/animal/animal.dto";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSkull} from "@fortawesome/free-solid-svg-icons";
 
