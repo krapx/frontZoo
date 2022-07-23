@@ -1,12 +1,10 @@
 import "./fight.css"
 import {useEffect, useRef, useState} from "react";
 import {Avatar} from "@mui/material";
-import {getRandZooAnimal} from "../../../api/zoo-animal.api";
-import {ZooAnimalModel} from "../../../model/zoo-animal.model";
 import {Loader} from "../../shared/loader/loader";
 import {PlayerAnimalResponse} from "../../../api/player-animal/player-animal.dto";
-import {AnimalResponse, UpdateAnimalRequest} from "../../../api/animal/animal.dto";
-import {updateAnimal} from "../../../api/animal/animal.api";
+import {AnimalResponse} from "../../../api/animal/animal.dto";
+import {updateAnimalStatus} from "../../../api/animal/animal.api";
 
 export interface AnimalFighter {
     name: string
@@ -34,16 +32,20 @@ const FightActive = (props: FightProps) => {
     const {userAnimals, spaceAnimals} = props;
     const [indexCurrentAnimal, setIndexCurrentAnimal] = useState(0);
     const damageDealtContainer = useRef<HTMLDivElement>(null);
-    const [animal, setAnimal] = useState<AnimalFighter>(null);
+    const [animal, setAnimal] = useState<AnimalFighter>({
+        name: spaceAnimals[indexCurrentAnimal].name,
+        img: spaceAnimals[indexCurrentAnimal].imageLink,
+        maxHP: Math.floor(spaceAnimals[indexCurrentAnimal].weightMax * spaceAnimals[indexCurrentAnimal].lengthMax + 10),
+        currentHP: Math.floor(spaceAnimals[indexCurrentAnimal].weightMax * spaceAnimals[indexCurrentAnimal].lengthMax + 10)
+    });
 
     useEffect(() => {
         setAnimal({
             name: spaceAnimals[indexCurrentAnimal].name,
             img: spaceAnimals[indexCurrentAnimal].imageLink,
-            maxHP: spaceAnimals[indexCurrentAnimal].weightMax * spaceAnimals[indexCurrentAnimal].lengthMax,
-            currentHP: spaceAnimals[indexCurrentAnimal].weightMax * spaceAnimals[indexCurrentAnimal].lengthMax
+            maxHP: Math.floor(spaceAnimals[indexCurrentAnimal].weightMax * spaceAnimals[indexCurrentAnimal].lengthMax + 10),
+            currentHP: Math.floor(spaceAnimals[indexCurrentAnimal].weightMax * spaceAnimals[indexCurrentAnimal].lengthMax + 10)
         })
-        // handleGetAnimal()
     }, [spaceAnimals, indexCurrentAnimal]);
 
     useEffect(() => {
@@ -58,30 +60,15 @@ const FightActive = (props: FightProps) => {
         }
     }, [animal])
 
-    const handleGetAnimal = () => {
-        getRandZooAnimal().then(res => {
-            const animal: ZooAnimalModel = res.data
-            setAnimal({
-                name: animal.name,
-                img: animal.image_link,
-                currentHP: Math.floor(animal.weight_max * animal.length_max),
-                maxHP: Math.floor(animal.weight_max * animal.length_max)
-            })
-        })
-    }
-
     const handleATK = () => {
         setAnimal(prevState => ({...animal, currentHP: prevState.currentHP - getTeamDamage()}))
         damageDealtContainer.current!.appendChild(showDamageDealt())
     }
 
     const handleDeath = () => {
-        console.log(`${animal.name} est mort !`)
-        // setAnimal(prevState => ({...animal, currentHP: prevState.maxHP}))
         clearDamageDealtContainer()
-
-        const body: UpdateAnimalRequest = {...spaceAnimals[indexCurrentAnimal]}
-        updateAnimal(body).then()
+        if (spaceAnimals[indexCurrentAnimal].status === "Dead") return;
+        updateAnimalStatus(spaceAnimals[indexCurrentAnimal].id, "Dead").then()
     }
 
     const clearDamageDealtContainer = () => {
@@ -120,8 +107,7 @@ const FightActive = (props: FightProps) => {
                 />
             </div>
             <div className="fight__footer">
-                <Avatar alt="my_animal"
-                        src={userAnimals[0].image}/>
+                <Avatar alt="my_animal" src={userAnimals[0].image}/>
                 ATK :
                 <span className="fight__atk">{getTeamDamage()}</span>
             </div>

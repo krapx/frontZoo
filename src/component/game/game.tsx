@@ -36,22 +36,26 @@ const Game = () => {
     if (zooGameDetails == null) return <Loader visibility/>
     return (
         <div className="game">
-            <div>
-                <h2>Historique</h2>
-                {
-                    zooGameDetails.animalsHistory.map(animal => (
-                        <AnimalHistory key={animal.id} animal={animal}/>
-                    ))
-                }
+            <div className="game__history">
+                <h2>Mon équipe</h2>
+                {zooGameDetails.playerAnimals.map(playerAnimal => (
+                    <div>{playerAnimal.name}</div>
+                ))}
             </div>
             <div className="game__body">
                 <h2>{zooGameDetails.name}</h2>
-                <div className="game__fight">
-                    <Fight
-                        userAnimals={zooGameDetails.playerAnimals}
-                        spaceAnimals={spaceAnimals}
-                    />
-                </div>
+                {
+                    spaceAnimals.length === 0
+                        ? <></>
+                        : (
+                            <div className="game__fight">
+                                <Fight
+                                    userAnimals={zooGameDetails.playerAnimals}
+                                    spaceAnimals={spaceAnimals}
+                                />
+                            </div>
+                        )
+                }
                 <div className="game__map">
                     <ZooMap
                         fetchAnimals={fetchAnimals}
@@ -59,7 +63,12 @@ const Game = () => {
                     />
                 </div>
             </div>
-            <div>??????????????????????</div>
+            <div className="game__history">
+                <h2>Historique</h2>
+                {zooGameDetails.animalsHistory.map(animal => (
+                    <AnimalHistory key={animal.id} animal={animal}/>
+                ))}
+            </div>
         </div>
     )
 }

@@ -13,7 +13,7 @@ const AnimalHistory = (props: AnimalHistoryProps) => {
     return (
         <div className="AnimalHistory">
             <img className="AnimalHistory__img" src={animal.imageLink} alt="animalHistoryImage"/>
-            {animal.name}
+            <p className="AnimalHistory__name">{animal.name}</p>
             <FontAwesomeIcon icon={faSkull}/>
         </div>
     )

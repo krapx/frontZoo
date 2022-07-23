@@ -12,7 +12,7 @@ export interface AnimalResponse {
 export interface UpdateAnimalRequest {
     name: string
     type: string
-    status: string
+    status: "Alive" | "Dead"
     lengthMax: number
     weightMax: number
     arrivalDate: string

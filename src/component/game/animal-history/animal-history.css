@@ -1,10 +1,15 @@
 .AnimalHistory {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     background-color: rgba(0, 0, 0, 0.4);
     border-radius: 5px;
     padding: 10px;
+}
+
+.AnimalHistory__name {
+    flex: 1;
+    padding: 0 10px;
+    font-size: 13px;
 }
 
 .AnimalHistory__img {
