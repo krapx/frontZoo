@@ -12,10 +12,10 @@ export const ZooMap = (props: IZooMapProps) => {
     const [currentSpace, setCurrentSpace] = useState(null as SpaceResponse);
 
     function handleFetchAnimals(e: any, index: number) {
-        // if (isAccessible(index) && index != 0) {
+        if (isAccessible(index)) {
             setCurrentSpace(spaces[index])
             fetchAnimals(e, index)
-        // }
+        }
     }
 
     const getStatusOfSpace = (index: number): string => {

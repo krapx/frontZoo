@@ -43,6 +43,7 @@ export interface GenerateZoo {
     }
     spaces: {
         name: string
+        status: 'LOCKED' | 'IN_PROGRESS' | 'COMPLETED'
         animalsNumber: number
     }[]
 }
