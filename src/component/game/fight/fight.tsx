@@ -5,7 +5,6 @@ import {Loader} from "../../shared/loader/loader";
 import {PlayerAnimalResponse} from "../../../api/player-animal/player-animal.dto";
 import {AnimalResponse} from "../../../api/animal/animal.dto";
 import {getAllBySpaceIdInAndStatus, updateAnimalStatus} from "../../../api/animal/animal.api";
-import {ZooGameDetailsResponse} from "../../../api/zoo/zoo.dto";
 
 export interface AnimalFighter {
     name: string
@@ -23,6 +22,7 @@ interface FightProps {
 
 const Fight = (props: FightProps) => {
     const {userAnimals, spaceAnimals, zooId, setAnimalsHistory} = props;
+    const defeatedCount = 0;
 
     if (spaceAnimals.length === 0) return <></>
     return (
@@ -67,6 +67,7 @@ const FightActive = (props: FightProps) => {
         }
     }, [animal])
 
+
     const handleATK = () => {
         setAnimal(prevState => ({...animal, currentHP: prevState.currentHP - getTeamDamage()}))
         damageDealtContainer.current!.appendChild(showDamageDealt())
@@ -74,7 +75,11 @@ const FightActive = (props: FightProps) => {
 
     const handleDeath = () => {
         clearDamageDealtContainer()
-        if (spaceAnimals[indexCurrentAnimal].status === "Dead") return;
+        if (spaceAnimals[indexCurrentAnimal].status === "Dead") {
+            // TODO incrémentation
+            // Var++
+            return;
+        }
         updateAnimalStatus(spaceAnimals[indexCurrentAnimal].id, "Dead").then(() => {
             getAllBySpaceIdInAndStatus(zooId).then(res => {
                 setAnimalsHistory(res.data)
@@ -104,7 +109,9 @@ const FightActive = (props: FightProps) => {
     if (animal == null) return <Loader visibility/>
     return (
         <div className="fight">
-            <div className="fight__header">{animal.name}</div>
+                <div className="fight__header">
+                    {animal.name}
+            </div>
             <div className="fight__body" onClick={handleATK}>
                 <img className="fight__img"
                      src={animal.img}
