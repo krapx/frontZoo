@@ -81,9 +81,9 @@ const FightActive = (props: FightProps) => {
             return;
         }
         updateAnimalStatus(spaceAnimals[indexCurrentAnimal].id, "Dead").then(() => {
-            getAllBySpaceIdInAndStatus(zooId).then(res => {
-                setAnimalsHistory(res.data)
-            })
+            // getAllBySpaceIdInAndStatus(zooId).then(res => {
+                setAnimalsHistory(null)
+            // })
         })
     }
 

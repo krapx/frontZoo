@@ -29,7 +29,10 @@ const Game = () => {
     }
 
     function setAnimalsHistory(value: AnimalResponse[]) {
-        setZooGameDetails(prevState => ({...prevState, animalsHistory: value}))
+        // setZooGameDetails(prevState => ({...prevState, animalsHistory: value}))
+        getZooGameDetailsById(zooId).then(res => {
+            setZooGameDetails(res.data)
+        })
     }
 
     if (zooGameDetails == null) return <Loader visibility/>
