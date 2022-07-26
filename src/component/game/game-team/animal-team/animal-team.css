@@ -1,0 +1,21 @@
+.AnimalTeam {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.AnimalTeam__name {
+    flex: 1;
+    padding: 0 10px;
+    font-size: 13px;
+}
+
+.AnimalTeam__img {
+    --img-size: 40px;
+    height: var(--img-size);
+    width: var(--img-size);
+    border-radius: 50px;
+    object-fit: cover;
+}
