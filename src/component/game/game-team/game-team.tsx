@@ -1,5 +1,6 @@
 import {ZooGameDetailsResponse} from "../../../api/zoo/zoo.dto";
 import TitleBadge from "../../shared/title-badge/title-badge";
+import AnimalTeam from "./animal-team/animal-team";
 
 const GameTeam = (props: { zooGameDetails: ZooGameDetailsResponse }) => {
     const {zooGameDetails} = props
@@ -11,7 +12,7 @@ const GameTeam = (props: { zooGameDetails: ZooGameDetailsResponse }) => {
                 badgeMessage={zooGameDetails.playerAnimals.length + ""}
             />
             {zooGameDetails.playerAnimals.map(playerAnimal => (
-                <div>{playerAnimal.name}</div>
+                <AnimalTeam key={playerAnimal.id} animals={playerAnimal} />
             ))}
         </div>
     )
