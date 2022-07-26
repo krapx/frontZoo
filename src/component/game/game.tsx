@@ -1,17 +1,11 @@
 import "./game.css"
-import {ZooMap} from "../shared/zoo-map/zoo-map";
-import Fight from "./fight/fight";
-import {Component, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {getZooGameDetailsById} from "../../api/zoo/zoo.api";
 import {useParams} from "react-router-dom";
 import {ZooGameDetailsResponse} from "../../api/zoo/zoo.dto";
 import {Loader} from "../shared/loader/loader";
-import AnimalHistory from "./game-history/animal-history/animal-history";
 import {getAnimalsBySpaceId} from "../../api/animal/animal.api";
 import {AnimalResponse} from "../../api/animal/animal.dto";
-import {Badge} from "@mui/material";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import TitleBadge from "../shared/title-badge/title-badge";
 import GameTeam from "./game-team/game-team";
 import GameBody from "./game-fight/game-fight";
 import GameHistory from "./game-history/game-history";
