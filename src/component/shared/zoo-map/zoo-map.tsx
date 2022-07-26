@@ -23,8 +23,9 @@ export const ZooMap = (props: IZooMapProps) => {
     };
 
     const isAccessible = (index: number) => {
+        let validStatus = ['IN_PROGRESS', 'COMPLETED'];
         const isPresent = index < spaces.length;
-        const isAccessible = spaces[index].status === 'IN_PROGRESS'
+        const isAccessible = validStatus.includes(spaces[index].status)
         return isPresent && isAccessible
     }
 
