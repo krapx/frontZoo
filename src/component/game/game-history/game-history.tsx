@@ -13,9 +13,11 @@ const GameHistory = (props: { zooGameDetails: ZooGameDetailsResponse }) => {
                 predicate={zooGameDetails.animalsHistory.length === 0}
                 badgeMessage={`${zooGameDetails.animalsHistory.length} animaux découverts`}
             />
-            {zooGameDetails.animalsHistory.map(animal => (
-                <AnimalHistory key={animal.id} animal={animal}/>
-            ))}
+            <div className="game__items">
+                {zooGameDetails.animalsHistory.map(animal => (
+                    <AnimalHistory key={animal.id} animal={animal}/>
+                ))}
+            </div>
         </div>
     )
 }

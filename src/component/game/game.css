@@ -25,6 +25,14 @@
     align-self: flex-start;
 }
 
+.game__items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow: auto;
+    max-height: 80vh;
+}
+
 .game__badge {
     font-size: 12px;
     margin-left: 5px;
